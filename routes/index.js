@@ -1,0 +1,14 @@
+const jwt=require('jsonwebtoken');
+const express=require('express');
+const router=express.Router();
+const homeController=require('../controllers/index');
+const userController=require('../controllers/user');
+const auth=require('../middleware/auth');
+const User = require('../models/user');
+router.get('/fetchtasks',auth,homeController.fetch);
+router.post('/createtask',auth,homeController.create);
+router.put('/update/:id',auth,homeController.update);
+router.delete('/delete/:id',auth,homeController.delete);
+router.post('/login',userController.signIn);
+router.post('/register',userController.signUp);
+module.exports=router;
